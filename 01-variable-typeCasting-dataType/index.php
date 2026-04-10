@@ -1,4 +1,5 @@
 <?php
+// 01-variable-typeCasting-dataType
 
 $name = 'Nayemur Rahman'; // string
 $age = 25; // int
