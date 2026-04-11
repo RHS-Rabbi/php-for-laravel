@@ -1,33 +1,38 @@
 <?php 
-/* Array Functions -- Part 2 */
-
-// laravel collection এ array কাজ
-
-$posts = collect([
-    ['title' => 'PHP learn', 'views' => 500],
-    ['title' => 'Laravel', 'views' => 900],
-    ['title' => 'MySQL', 'views' => 300],
-]);
-
-// pluck - নিদিষ্ট field এর values নাও
-$posts->pluck("title");
-// ['PHP learn', 'Laravel', 'MySQL']
-
-// chunk - ছোট ছোট অংশে ভাগ করে।
-$posts->chunk(2);
-// [[post1, post2], [post2]]
-
-$posts->sortbyDesc("views")->take(2);
-// সর্বোচ্চ views এর ২টি post
+/* Array Functions -- Part 1 */
 
 
-array_chunk([1,2,3,4,5], 2);
-// -> [[1,2], [3,4], [5]]
+$nums = [1, 2, 3, 4, 5, 6];
 
-$a = ['php', 'laravel'];
-$b = ['mysql', 'redis'];
-array_merge($a, $b); // -> ['php', 'laravel','mysql', 'redis' ]
+//  array_map - প্রতিটি item-এ function apply করে।
+$type1 = array_map( fn($n) => $n * 2, $nums );
 
-$t = ['php', 'php', 'laravel'];
-array_unique($t); // -> ['php', 'laravel']
+var_dump( $type1 ); // [2,4,,6,8,10,12]
+echo '<br/>';
+
+// array_filter -- condition মতো filter করো।
+$type2 = array_filter( $nums, fn($n) => $n % 2 ===  0 );
+var_dump( $type2 ); // [2,4,6]
+
+echo '<br/>';
+
+// array_reduce - সব মিলিয়ে একটি value বানাও।
+$type3 = array_reduce( $nums, fn($carry, $item) => $carry + $item, 0 );
+
+echo $type3 . '<br/>'; // 21
+
+
+$arr = ['a' => 'apple', 'b' => 'banana', 'c' => 'cherry'];
+// array_values() array থেকে keys সরিয়ে দেয় এবং শুধু values গুলোকে 0 থেকে শুরু করে নতুন করে ইন্ডেক্স করে। এটি array কে "রিসেট" করে।
+$type4 =  array_values($arr);
+
+print_r($type4); 
+
+echo'<br/>';
+//array_keys() একটি array থেকে শুধুমাত্র keys গুলো নিয়ে নতুন array তৈরি করে।
+$type5 = array_keys($arr);
+
+print_r($type5); 
+
+echo'<br/>';
 ?>
