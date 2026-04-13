@@ -18,7 +18,7 @@ $post->title = "PHP OOP Learn";
 $post->content = "Detailed....";
 $post->views = 250;
 
-echo $post->getInfo();
+echo $post->getInfo(); // -> PHP OOP Learn (250 views)
 
 
 ?>
